@@ -44,6 +44,9 @@ public class TeacherService {
     }
     public Teacher allTeacherDetails(Integer id){
     Address address=addressRepository.findAddressByTeacherId(id);
+    if (address==null){
+        throw new ApiException("id not found");
+    }
     Teacher teacher= address.getTeacher();
     return teacher.getAddress().getTeacher();
     }
